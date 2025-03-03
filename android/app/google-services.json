@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "614486042898",
+    "project_id": "fitness-app-ccf4f",
+    "storage_bucket": "fitness-app-ccf4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614486042898:android:bc4a0dc4a4e7ffae26abcb",
+        "android_client_info": {
+          "package_name": "com.example.stackbuffer_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614486042898-erl899cl2os6jjbcsjmeckmjgd1bfkuo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBP6UAgywwo19k54j5wYsBYaMcIwkQdb6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614486042898-erl899cl2os6jjbcsjmeckmjgd1bfkuo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614486042898:android:bbc24e2191e02b3926abcb",
+        "android_client_info": {
+          "package_name": "com.panothi.fitness_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614486042898-lh4ulqf97lhcfnkdsvbm94rbbte5get5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.panothi.fitness_app",
+            "certificate_hash": "b1b04124bcc864fd6beb2e1e1de88c8f35411b52"
+          }
+        },
+        {
+          "client_id": "614486042898-erl899cl2os6jjbcsjmeckmjgd1bfkuo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBP6UAgywwo19k54j5wYsBYaMcIwkQdb6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614486042898-erl899cl2os6jjbcsjmeckmjgd1bfkuo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
