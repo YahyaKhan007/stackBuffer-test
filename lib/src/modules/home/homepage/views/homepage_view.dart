@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:stackbuffer_test/src/core/custom_elements/app_assets.dart';
 import 'package:stackbuffer_test/src/core/custom_elements/app_constants.dart';
 import 'package:stackbuffer_test/src/core/custom_elements/custom_text.dart';
+import 'package:stackbuffer_test/src/core/services/route_service/app_route_service.dart';
 import 'package:stackbuffer_test/src/modules/home/homepage/controller/homepage_controller.dart';
 
 import '../../../../core/custom_elements/app_colors.dart';
@@ -26,9 +27,9 @@ class HomepageView extends StatelessWidget {
           padding: EdgeInsets.only(left: 16.0),
           child: Text(
             'Hi ${homepageController.userService.currentUser.value?.name ?? ""}',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 24,
+            style: GoogleFonts.plusJakartaSans(
+              color: AppColors.blueGrey,
+              fontSize: 22.sp,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -45,12 +46,12 @@ class HomepageView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+             Text(
               'Popular Now',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
+              style: GoogleFonts.plusJakartaSans(
+                color: AppColors.blueGrey,
+                fontSize: 16.sp,
+                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 16),
@@ -64,7 +65,9 @@ class HomepageView extends StatelessWidget {
                 ),
                 itemCount: AppConstants.burgerNames.length,
                 itemBuilder: (context, index) {
-                  return _buildBurgerCard(index);
+                  return _buildBurgerCard(index: index , onTap: (){
+                    Get.toNamed(AppRoutes.productDetails.path);
+                  });
                 },
               ),
             ),
@@ -74,55 +77,77 @@ class HomepageView extends StatelessWidget {
     );
   }
 
-  Widget _buildBurgerCard(int index) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.blue.shade50,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(AppAssets.burger),
-          // 8.verticalSpace,
-          Text(
-            AppConstants.burgerNames[index],
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
-            ),
-          ),
-          CustomText(
-            text: 'Cicada Market',
-            textStyle: GoogleFonts.plusJakartaSans(
-              color: Colors.grey,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-          8.verticalSpace,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CustomText(
-                text: AppConstants.prices[index],
-                textStyle: GoogleFonts.plusJakartaSans(
-                  color: Colors.grey,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(8),
-                decoration: const BoxDecoration(
-                  color: Colors.orange,
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.shopping_bag, color: Colors.white),
-              ),
-            ],
-          ),
-        ],
+  Widget _buildBurgerCard({required int index, required VoidCallback onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.blue.shade50,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(AppAssets.burger),
+            // 8.verticalSpace,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start
+                ,crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppConstants.burgerNames[index],
+                    style: GoogleFonts.plusJakartaSans(
+                      color: AppColors.blueGrey,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  8.verticalSpace,
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start
+                      ,crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomText(
+                          text: 'Cicada Market',
+                          textStyle: GoogleFonts.plusJakartaSans(
+                            color: AppColors.grey,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        // 8.verticalSpace,
+                        CustomText(
+                          text: AppConstants.prices[index],
+                          textStyle: GoogleFonts.plusJakartaSans(
+                            color: AppColors.secondary,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration:  BoxDecoration(
+                        color: AppColors.secondary.withValues(alpha: 0.7),
+                        shape: BoxShape.circle,
+                      ),
+                      child:  Image.asset(AppAssets.cartIcon),
+                    ).paddingOnly(top: 12.h),
+                    // 8.verticalSpace,
+
+
+                  ],)
+                ],
+              ).paddingSymmetric(horizontal: 16.w),
+            )
+          ],
+        ),
       ),
     );
   }

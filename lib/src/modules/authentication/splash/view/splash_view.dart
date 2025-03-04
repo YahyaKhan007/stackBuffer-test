@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:stackbuffer_test/src/core/custom_elements/base_scaffold.dart';
 import 'package:stackbuffer_test/src/modules/authentication/splash/controller/splash_controller.dart';
 
+import '../../../../core/custom_elements/app_colors.dart';
 import '../../../../core/custom_elements/app_strings.dart';
 import '../../../../core/custom_elements/custom_text.dart';
 
@@ -32,10 +34,10 @@ class _SplashViewState extends State<SplashView> {
       body: Center(
         child: CustomText(
           text: AppStrings.splashScreen,
-          textStyle: TextStyle(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.normal,
-            fontStyle: FontStyle.italic,
+          textStyle: GoogleFonts.plusJakartaSans(
+            color: AppColors.blueGrey,
+            fontSize: 22.sp,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
