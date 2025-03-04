@@ -8,4 +8,6 @@ class AppStrings {
   static const password = "Password";
   static const email = "Email";
   static const forgotPassword = "Forgot Password";
+  static const signOutSuccessful = "SignOut Successful";
+  static const notYetImplemented = "Not Yet Implemented";
 }

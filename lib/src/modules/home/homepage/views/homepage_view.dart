@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:stackbuffer_test/src/core/custom_elements/app_assets.dart';
+import 'package:stackbuffer_test/src/core/custom_elements/app_constants.dart';
+import 'package:stackbuffer_test/src/core/custom_elements/custom_text.dart';
+import 'package:stackbuffer_test/src/modules/home/homepage/controller/homepage_controller.dart';
+
+import '../../../../core/custom_elements/app_colors.dart';
 
 class HomepageView extends StatelessWidget {
-  const HomepageView({Key? key}) : super(key: key);
+  HomepageView({super.key});
+
+  final HomepageController homepageController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -10,10 +22,10 @@ class HomepageView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: const Padding(
+        title: Padding(
           padding: EdgeInsets.only(left: 16.0),
           child: Text(
-            'Hi Username!',
+            'Hi ${homepageController.userService.currentUser.value?.name ?? ""}',
             style: TextStyle(
               color: Colors.black,
               fontSize: 24,
@@ -21,6 +33,12 @@ class HomepageView extends StatelessWidget {
             ),
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: homepageController.logout,
+            icon: Icon(Icons.logout, color: AppColors.errorColor),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -44,7 +62,7 @@ class HomepageView extends StatelessWidget {
                   mainAxisSpacing: 10,
                   childAspectRatio: 0.8,
                 ),
-                itemCount: 6,
+                itemCount: AppConstants.burgerNames.length,
                 itemBuilder: (context, index) {
                   return _buildBurgerCard(index);
                 },
@@ -57,10 +75,6 @@ class HomepageView extends StatelessWidget {
   }
 
   Widget _buildBurgerCard(int index) {
-    final burgerNames = ['Scobedo Burger', 'Vegan Burger'];
-    final prices = ['Rs 34', 'Rs 42'];
-    final burgerImage = 'https://via.placeholder.com/150';
-
     return Container(
       decoration: BoxDecoration(
         color: Colors.blue.shade50,
@@ -69,26 +83,33 @@ class HomepageView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.network(burgerImage, height: 80),
-          const SizedBox(height: 8),
+          Image.asset(AppAssets.burger),
+          // 8.verticalSpace,
           Text(
-            burgerNames[index % burgerNames.length],
+            AppConstants.burgerNames[index],
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.black87,
             ),
           ),
-          const Text('Cibadak Market', style: TextStyle(color: Colors.grey)),
-          const SizedBox(height: 8),
+          CustomText(
+            text: 'Cicada Market',
+            textStyle: GoogleFonts.plusJakartaSans(
+              color: Colors.grey,
+              fontSize: 12.sp,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+          8.verticalSpace,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                prices[index % prices.length],
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.orange,
+              CustomText(
+                text: AppConstants.prices[index],
+                textStyle: GoogleFonts.plusJakartaSans(
+                  color: Colors.grey,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.normal,
                 ),
               ),
               Container(

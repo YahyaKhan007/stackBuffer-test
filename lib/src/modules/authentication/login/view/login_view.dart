@@ -8,6 +8,7 @@ import 'package:stackbuffer_test/src/core/custom_elements/app_strings.dart';
 import 'package:stackbuffer_test/src/core/custom_elements/base_scaffold.dart';
 import 'package:stackbuffer_test/src/core/custom_elements/custom_image.dart';
 import 'package:stackbuffer_test/src/core/custom_elements/custom_text.dart';
+import 'package:stackbuffer_test/src/core/utils.dart';
 import 'package:stackbuffer_test/src/modules/authentication/login/controller/auth_controller.dart';
 
 class LoginView extends StatelessWidget {
@@ -67,6 +68,12 @@ class LoginView extends StatelessWidget {
               () => GestureDetector(
                 onTap: () {
                   isChecked.value = !isChecked.value;
+
+                  if (isChecked.value) {
+                    Utils.showToastBottom(
+                      message: AppStrings.notYetImplemented,
+                    );
+                  }
                 },
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
@@ -80,22 +87,32 @@ class LoginView extends StatelessWidget {
               ),
             ),
             8.horizontalSpace,
-            Text(
-              'Remember me',
-              style: GoogleFonts.plusJakartaSans(
-                color: Color(0xff435A39),
-                fontSize: 12.sp,
-                fontWeight: FontWeight.normal,
+            GestureDetector(
+              onTap: () {
+                Utils.showToastBottom(message: AppStrings.notYetImplemented);
+              },
+              child: Text(
+                'Remember me',
+                style: GoogleFonts.plusJakartaSans(
+                  color: Color(0xff435A39),
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.normal,
+                ),
               ),
             ),
           ],
         ),
-        CustomText(
-          text: AppStrings.forgotPassword,
-          textStyle: GoogleFonts.plusJakartaSans(
-            color: Color(0xff435A39),
-            fontSize: 12.sp,
-            fontWeight: FontWeight.normal,
+        GestureDetector(
+          onTap: () {
+            Utils.showToastBottom(message: AppStrings.notYetImplemented);
+          },
+          child: CustomText(
+            text: AppStrings.forgotPassword,
+            textStyle: GoogleFonts.plusJakartaSans(
+              color: Color(0xff435A39),
+              fontSize: 12.sp,
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ),
       ],

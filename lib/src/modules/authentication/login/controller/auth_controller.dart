@@ -7,6 +7,7 @@ import 'package:stackbuffer_test/src/modules/authentication/login/models/user_mo
 import '../../../../core/repository/database_repository.dart';
 import '../../../../core/services/route_service/app_route_service.dart';
 import '../../../../core/services/user_service/user_service.dart';
+import '../../../../core/utils.dart';
 
 class AuthController extends GetxController {
   final dbRepo = DatabaseRepository();
@@ -16,6 +17,11 @@ class AuthController extends GetxController {
   TextEditingController passwordController = TextEditingController();
 
   performSignIn() async {
+    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+      Utils.showToastBottom(message: "Email Password must not be empty");
+
+      return;
+    }
     AppLoadings.showOverlayLoading();
     try {
       final user = await dbRepo.loginWithEmailPassword(
@@ -23,7 +29,11 @@ class AuthController extends GetxController {
         password: passwordController.text.trim(),
       );
 
-      if (user == null) return;
+      if (user == null) {
+        Utils.showToastBottom(message: "Email Password not correct");
+
+        return;
+      }
 
       final userData = await dbRepo.getDocumentById(
         userId: user.uid,
@@ -33,6 +43,7 @@ class AuthController extends GetxController {
 
       final loggedInUser = UserModel.fromMap(userData);
       userService.currentUser.value = loggedInUser;
+      Utils.showToastBottom(message: "Logged in Successful");
 
       Get.offAllNamed(AppRoutes.homepage.path);
     } catch (e, stackTrace) {

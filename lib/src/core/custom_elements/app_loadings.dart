@@ -38,7 +38,7 @@ class AppLoadings {
               BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
                 child: Container(
-                  color: AppColors.primary,
+                  color: AppColors.primary.withValues(alpha: 0.1),
                 ), // Semi-transparent overlay
               ),
 
