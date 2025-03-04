@@ -45,7 +45,7 @@ class HomepageView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+             Text(
               'Popular Now',
               style: GoogleFonts.plusJakartaSans(
                 color: AppColors.blueGrey,

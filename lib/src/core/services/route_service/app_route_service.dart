@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:stackbuffer_test/src/modules/authentication/login/view/login_view.dart';
 import 'package:stackbuffer_test/src/modules/authentication/splash/view/splash_view.dart';
 import 'package:stackbuffer_test/src/modules/home/homepage/views/homepage_view.dart';
+import 'package:stackbuffer_test/src/modules/product_details/views/product_details_view.dart';
 
 import '../../../modules/food_details_view/views/food_details_view.dart';
 
@@ -20,6 +21,10 @@ class AppPages {
         return FoodDetailsScreen(tag: args['tag']);
       },
     ),
+    GetPage(
+      name: AppRoutes.foodDetailsScreen.path,
+      page: () => ProductDetailsView(),
+    ),
   ];
 }
 
@@ -34,6 +39,8 @@ extension AppRoutesExtension on AppRoutes {
         return '/homepage';
       case AppRoutes.foodDetailsScreen:
         return '/foodDetailsScreen';
+      case AppRoutes.foodDetailsScreen:
+        return '/productDetails';
       // Default route
     }
   }
