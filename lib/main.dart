@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:stackbuffer_test/src/core/custom_elements/app_bindings.dart';
 import 'package:stackbuffer_test/src/core/services/route_service/app_route_service.dart';
@@ -12,6 +13,8 @@ var uuid = Uuid();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey =
+      'pk_test_51QyxSSFmnvNKignLVeeWXPyT7jDD2JloH9kxF6uLME04q4h9hJlQ1JkJtwiW9CEPlDrTi7lT93oFb9ZWBDWjH1Je00CwHg9C89';
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
